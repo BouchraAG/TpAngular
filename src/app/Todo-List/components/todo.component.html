@@ -1,0 +1,86 @@
+<div class="p-4 w-full text-center bg-white rounded-lg border shadow-md sm:p-8
+    dark:bg-gray-800 dark:border-gray-700">
+    <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">ToDo List</h5>
+    <div class="flex items-center justify-between">
+
+        <input [(ngModel)]="newTask" type="text" class="form-control relative
+            flex-auto
+            min-w-0 block w-full px-3 py-1.5 text-base font-normal
+            text-gray-700 bg-white bg-clip-padding border border-solid
+            border-gray-300 rounded transition ease-in-out m-0
+            focus:text-gray-700 focus:bg-white focus:border-blue-600
+            focus:outline-none" placeholder="Tache" aria-label="Search"
+            aria-describedby="button-addon2">
+        <button (click)="addToList()"
+            class="btn inline-block px-6 py-2.5 bg-blue-600
+            text-white font-medium text-xs leading-tight uppercase
+            rounded shadow-md hover:bg-blue-700 hover:shadow-lg
+            focus:bg-blue-700 focus:shadow-lg focus:outline-none
+            focus:ring-0 active:bg-blue-800 active:shadow-lg transition
+            duration-150 ease-in-out flex items-center" type="button"
+            id="button-addon2">
+            <svg aria-hidden="true" focusable="false" data-prefix="far"
+                data-icon="arrow-alt-circle-down" class="w-7 h-7" role="img"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248
+                    248 248 248-111 248-248S393 8 256 8zm0 448c-110.5
+                    0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5
+                    200-200 200zm-32-316v116h-67c-10.7 0-16 12.9-8.5 20.5l99
+                    99c4.7 4.7 12.3 4.7 17 0l99-99c7.6-7.6
+                    2.2-20.5-8.5-20.5h-67V140c0-6.6-5.4-12-12-12h-40c-6.6 0-12
+                    5.4-12 12z"></path>
+            </svg>
+        </button>
+        <select
+            [(ngModel)]="priotrity"
+            class="py-2 px-4 rounded-md bg-red-600 text-white rounded-r
+            border-2 border-gray-200 hover:bg-white hover:text-purple-600
+            active:bg-gray-200 disabled:opacity-50 inline-flex items-center
+            focus:outline-none">
+            <option value="0" selected>Priotrity</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
+
+    <div *ngFor="let x of tasks; let index= index"
+        (click)="markDone(index)"
+        class="shadow bg-white rounded-full flex my-2 shadow-lg rounded-lg
+        cursor-pointer hover:scale-105
+        transition-transform duration-300" role="alert">
+        <div
+            [ngClass]="{ 'line-through': x.isDone, 'opacity-70': x.isDone }"
+            class="px-4
+            py-6 bg-white rounded-r-lg flex justify-between
+            items-center w-full border border-l-transparent
+            border-gray-200">
+            <div
+                class="py-4 text-white bg-green-600 px-6 rounded-l-lg flex
+                items-center
+                transition-all
+                duration-500">
+                {{ x.priority }}
+            </div>
+            <div class="text-lg font-semibold transition-all duration-200">
+
+                {{ x.description }}
+            </div>
+            <button (click)="deleteTask(index)">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="fill-current text-gray-700 hover:text-red-600"
+                    viewBox="0 0 16 16"
+                    width="20"
+                    height="20">
+                    <path
+                        fill-rule="evenodd"
+                        d="M3.72 3.72a.75.75 0 011.06 0L8
+                        6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22
+                        3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75
+                        0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
